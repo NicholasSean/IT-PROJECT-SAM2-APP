@@ -1,0 +1,109 @@
+/* Consolidated image preview container */
+.img-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-height: 70vh;
+  overflow: hidden;
+  border-radius: 0.5em;
+}
+
+.img-preview-image {
+  display: block;
+  max-height: 70vh;
+  max-width: 100%;
+  width: 100%;
+  height: 70vh;
+  object-fit: contain;
+}
+
+/* Mask styling remains unchanged */
+.img-preview-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: 
+    /* mask outline styling */ drop-shadow(2px 0 0 white) drop-shadow(0 2px 0 white)
+    drop-shadow(-2px 0 0 white) drop-shadow(0 -2px 0 white);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.img-preview-mask.highlight {
+  filter: grayscale(100%) sepia(100%) hue-rotate(185deg) saturate(350%) brightness(110%)
+    /* this is very resource intensive, so use sparingly */ /* mask outline styling */
+    drop-shadow(2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(-2px 0 0 white)
+    drop-shadow(0 -2px 0 white);
+  z-index: 2;
+}
+
+/* Animation for points */
+@keyframes spawn {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.img-preview .point {
+  animation: spawn 0.1s ease-out;
+  opacity: 1;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  border: 2px solid rgb(238, 234, 209);
+  transition: width 0.1s ease, height 0.1s ease, box-shadow 0.1s ease;
+  z-index: 3;
+}
+
+.img-preview .inclusion.point {
+  background-color: rgba(0, 150, 0);
+}
+
+.img-preview .exclusion.point {
+  background-color: rgba(230, 0, 0, 0.9);
+}
+
+.img-preview .point.erasable:hover {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  /* glow effect */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.img-preview .point.erasable.shrink {
+  width: 0px;
+  height: 0px;
+}
+
+.img-preview .bounding-box {
+  position: absolute;
+  border: 2px solid rgba(238, 234, 209);
+  background-color: rgba(0, 150, 0, 0.2);
+  pointer-events: none;
+  transform-origin: center;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.img-preview .bounding-box.erasable {
+  transition: transform 0.2s ease, box-shadow 0.1s ease;
+  pointer-events: auto;
+}
+
+.img-preview .bounding-box.erasable:hover {
+  transform: scale(1.025); /* Scale up by 5% on hover */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.img-preview .bounding-box.shrink {
+  transform: scale(0) !important;
+}

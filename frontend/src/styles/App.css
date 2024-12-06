@@ -1,0 +1,213 @@
+/* global container */
+.app {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(238, 234, 209, 1);
+  overflow: auto;
+  display: grid;
+  padding: min(25px, 4vmin);
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.35s ease;
+}
+
+.app > * {
+  transition: filter 0.35s ease;
+}
+
+.app.disable {
+  background-color: rgba(238, 234, 209, 0.6); /* lowers brightness of background */
+}
+
+.app.disable > * {
+  filter: blur(5px) brightness(0.6);
+}
+
+.app.disable * {
+  pointer-events: none;
+}
+
+/* layout for prompting user to upload an image */
+.prompt-layout {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* layout for annotation tool */
+.tool-layout {
+  grid-gap: 1vmax;
+  grid-template: 1fr 10fr 1fr / 1fr;
+  position: relative;
+}
+
+.prompt-layout::before {
+  content: '';
+  flex: 1;
+  /* mirrors upload button offset above prompt text, effectively
+   * centring it */
+  margin: max(3.5px, 0.6vh);
+  box-sizing: border-box;
+}
+
+/* image input section */
+.img-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  padding: max(3.5px, 0.6vh);
+  border-radius: max(3.5px, 0.5vh);
+  background-color: var(--light-grey-blue);
+  transition: background-color 0.3s;
+}
+
+.img-input.pulsate {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tool-layout .img-input {
+  align-self: end;
+  padding-bottom: 0.4%;
+}
+
+/* hide file input element */
+#img-input-elem {
+  display: none;
+}
+
+/* image buffer container */
+.img-buf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-right: max(4px, 0.65vh);
+  gap: max(5px, 0.8vh);
+  max-width: 55vw;
+  overflow-x: auto;
+}
+
+.img-buf > * {
+  flex-shrink: 0;
+}
+
+/* upload button container */
+.img-upload-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: max(4px, 0.55vh);
+  background-color: var(--dark-grey-blue);
+  cursor: pointer;
+  container-type: inline-size;
+  container-name: img-upload-btn;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.img-upload-btn,
+.prompt-layout::before {
+  aspect-ratio: 1/0.97;
+  height: max(70px, 4.7vh);
+  min-height: 3.6vh;
+}
+
+/* icon inside upload button */
+.img-upload-btn-icon {
+  color: var(--btn-labels);
+  height: 42%;
+  width: 42%;
+  transition: color 0.3s;
+}
+
+/* text inside upload button */
+.img-upload-btn-text {
+  font-weight: 550;
+  color: var(--btn-labels);
+  text-align: center;
+  transition: color 0.3s;
+}
+
+/* hover effect for upload button */
+.img-upload-btn:hover {
+  background-color: var(--btn-labels-hover);
+}
+
+/* hover effect for icon and text inside upload button */
+.img-upload-btn:hover .img-upload-btn-icon,
+.img-upload-btn:hover .img-upload-btn-text {
+  color: var(--dark-grey-blue-hover);
+}
+
+/* container query styles */
+@container img-upload-btn (min-width: 3.6vh) {
+  .img-upload-btn-text {
+    /* scales with container dimensions */
+    font-size: 21cqi;
+  }
+}
+
+/* hover effect for image input section during prompt mode */
+.prompt-layout .img-input:has(.img-upload-btn:hover) {
+  background-color: #bbb;
+}
+
+/* hover effect for upload button in tool mode */
+.tool-layout .img-upload-btn {
+  transition: box-shadow 0.3s;
+}
+
+.tool-layout .img-upload-btn:hover {
+  box-shadow: 0 0 0 1px #aaa;
+}
+
+.app .bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.app .icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 50%;
+}
+
+.app .icon-button:hover {
+  transform: scale(1.15);
+}
+
+.app .icon-button.settings:hover {
+  transform: scale(1.15) rotate(60deg);
+}
+
+.app .bottom-row .icon {
+  height: 1.75rem;
+  width: auto;
+  color: white;
+  background-color: var(--deep-blue);
+  padding: max(3.75px, 0.525vmin);
+  border-radius: 50%;
+}

@@ -1,0 +1,54 @@
+/* image upload prompt styling */
+.prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  gap: 2vh;
+  height: 100%;
+}
+
+/* centred text in prompt */
+.prompt-text {
+  font-size: min(4vmax, 8vmin);
+  color: var(--deep-blue);
+  display: flex;
+  text-align: center;
+}
+
+.prompt {
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt::before {
+  content: '';
+  flex: 1 1 0;
+}
+
+.down-arrow-container {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.line {
+  flex: 5.5 1 0;
+  width: 0.5vh;
+  height: 50px;
+  background-color: var(--deep-blue);
+}
+
+.arrow-head {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  width: 0;
+  height: 0;
+  border-left: 1vh solid transparent;
+  border-right: 1vh solid transparent;
+  border-top: 2vh solid var(--deep-blue);
+}

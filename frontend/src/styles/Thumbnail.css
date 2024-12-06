@@ -1,0 +1,81 @@
+/* TODO: use relative units */
+
+.img-thumbnail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  width: max(75px, 10vh);
+  container-type: inline-size;
+  container-name: img-thumbnail;
+}
+
+/* image-delete icon */
+.img-delete-icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  aspect-ratio: 1;
+  width: auto;
+  background-color: var(--dark-grey-blue);
+  color: var(--btn-labels-colour);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* show delete icon on hover */
+.img-thumbnail:hover .img-delete-icon {
+  opacity: 1;
+}
+
+/* thumbnails */
+.img-thumbnail img {
+  border-radius: 5px;
+  border: 1px solid transparent;
+  border-color: var(--dark-grey-blue);
+  aspect-ratio: 1;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+/* label styles */
+.img-label {
+  text-align: center;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  /* show ellipsis when text overflows */
+  text-overflow: ellipsis;
+  margin: 0;
+  max-width: 100%;
+}
+
+.img-thumbnail.selected {
+  opacity: 1;
+}
+
+.img-thumbnail.selected .img-label {
+  opacity: 1;
+}
+
+.img-thumbnail:not(.selected) {
+  opacity: 0.5;
+}
+
+.img-thumbnail:not(.selected) .img-label {
+  opacity: 0.75;
+}
+
+/* container query to scale the image label text with container size changes */
+@container (min-width: 3.6vh) {
+  .img-label {
+    font-size: 16px;
+  }
+}

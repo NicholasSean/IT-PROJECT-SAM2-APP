@@ -1,0 +1,148 @@
+.help-popup {
+  filter: none !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 90%;
+  z-index: 1000;
+  padding: 20px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  background-color: var(--light-grey-blue);
+  color: var(--deep-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+  gap: 1rem;
+}
+
+.help-popup * {
+  pointer-events: auto !important;
+}
+
+/* .help-popup > * {
+  outline: 1px solid red;
+}
+
+.help-popup .body > *,
+.help-popup .header > * {
+ outline: 1px solid green;
+} */
+
+.help-popup .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+}
+
+.help-popup .header .page-num {
+  background-color: var(--deep-blue);
+  color: white;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.help-popup .header .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--deep-blue);
+  font-size: 28px;
+}
+
+.help-popup .header .exit-button {
+  background: var(--dark-grey-blue);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.help-popup .header .exit-button:hover {
+  transform: scale(1.15);
+}
+
+.help-popup .icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.help-popup .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 2.4rem;
+}
+
+.help-popup .nav .icon {
+  transition: transform 0.25s ease;
+  color: var(--deep-blue);
+  z-index: 10;
+}
+
+.help-popup .nav:hover .icon {
+  transform: scale(1.75);
+}
+
+.help-popup .body {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.help-popup .body .content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.help-popup .body .content .demo-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.help-popup .body .content video {
+  width: max(400px, 100%);
+  border-radius: 0.5rem;
+}
+
+.help-popup .body .content .text {
+  text-align: center;
+}
+
+.help-popup .dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--deep-blue);
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+}
+
+.dot.current {
+  background-color: var(--deep-blue);
+}

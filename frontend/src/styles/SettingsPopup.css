@@ -1,0 +1,102 @@
+.settings-popup {
+  filter: none !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(280px, 20%);
+  z-index: 1000;
+  padding: 1rem;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  background-color: var(--light-grey-blue);
+  color: var(--deep-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+  gap: 1rem;
+}
+
+.settings-popup * {
+  pointer-events: auto !important;
+}
+
+.settings-popup > * {
+  border: 2px solid var(--deep-blue);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.settings-popup .title {
+  font-size: 20px;
+}
+
+.settings-popup .setting-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  /* outline: 1px solid red; */
+  width: 100%;
+}
+
+.settings-popup .setting-container .left-setting {
+  text-align: right;
+}
+
+.settings-popup .setting-container span {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.settings-popup .setting-container .button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  flex: 2 1 0;
+}
+
+.settings-popup .setting-container .button-container::before {
+  content: '';
+  position: absolute;
+  top: 50%; /* Position the line at the middle of the container */
+  left: 16px; /* Offset to ensure the line starts after the first button */
+  right: 16px; /* Offset to ensure it stops before the last button */
+  height: 3px; /* Thickness of the line */
+  background-color: var(--dark-grey-blue); /* Color of the line */
+  transform: translateY(-50%) scaleY(1); /* Use scaleY to enforce the thickness */
+  transform-origin: center;
+  z-index: 0;
+}
+
+.settings-popup .setting-container .slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--deep-blue);
+  transition: left 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.settings-popup .setting-container .button-container button {
+  all: unset;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--dark-grey-blue);
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+  z-index: 1;
+}
